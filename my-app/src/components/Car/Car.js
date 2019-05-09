@@ -11,9 +11,9 @@ class Car extends Component {
                 <input type="text"
                        className="input"
                        onChange={this.props.onChangeName}
-                       value={this.props.value}
+                       value={this.props.name}
                 />
-                <button onClick={this.props.onChangeTitle}>Click</button>
+                <button onClick={this.props.onDelete}>Delete</button>
             </div>
         );
     }

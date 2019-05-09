@@ -12,21 +12,32 @@ class App extends Component {
     pageTitle: 'React components',
     showCars: false
   };
-
-  changeTitleHandler = (newTitle) => {
-    this.setState({
-        pageTitle: newTitle
-    });
-  };
-
+// App handlers
     toggleCarsHandler = () => {
         this.setState({
             showCars: !this.state.showCars
         });
     };
+// Car component functions
+    onChangeName = (inputValue, index) => {
+        const car = this.state.cars[index];
+        const cars = [...this.state.cars];
 
+        car.name = inputValue;
+        cars[index] = car;
+
+        this.setState({cars});
+    };
+
+    deleteItem(index) {
+        const cars = this.state.cars.concat();
+
+        cars.splice(index, 1);
+        this.setState({cars});
+    }
+
+// render App
   render() {
-
     return (
       <div className="App">
         <h1>{this.state.pageTitle}</h1>
@@ -38,7 +49,8 @@ class App extends Component {
                           key={index}
                           name={car.name}
                           year={car.year}
-                          onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+                          onChangeName = {event => {this.onChangeName(event.target.value, index)}}
+                          onDelete={this.deleteItem.bind(this, index)}
                       />
                   );
               })

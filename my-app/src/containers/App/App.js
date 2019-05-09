@@ -9,28 +9,41 @@ class App extends Component {
       {name: 'Ford', year: 2018},
       {name: 'Mazda', year: 2013}
     ],
-    pageTitle: 'React components'
+    pageTitle: 'React components',
+    showCars: false
   };
 
-  changeTitleHandler = () => {
-    console.log('Clicked!');
+  changeTitleHandler = (newTitle) => {
+    this.setState({
+        pageTitle: newTitle
+    });
   };
 
-  render() {
-    const divStyle = {
-      textAlign: 'center',
-      border: '1px solid #eee'
+    toggleCarsHandler = () => {
+        this.setState({
+            showCars: !this.state.showCars
+        });
     };
 
-    const cars = this.state.cars;
-    return (
-      <div className="App" style={divStyle}>
-        <h1>{this.state.pageTitle}</h1>
-        <button onClick={this.changeTitleHandler}>Change title</button>
+  render() {
 
-        <Car name={cars[0].name} year={cars[0].year}/>
-        <Car name={cars[1].name} year={cars[1].year}/>
-        <Car name={cars[2].name} year={cars[2].year}/>
+    return (
+      <div className="App">
+        <h1>{this.state.pageTitle}</h1>
+        <button onClick={this.toggleCarsHandler}>Toggle cars</button>
+          {this.state.showCars ?
+              this.state.cars.map((car, index) => {
+                  return (
+                      <Car
+                          key={index}
+                          name={car.name}
+                          year={car.year}
+                          onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+                      />
+                  );
+              })
+              : null
+          }
       </div>
     );
   }

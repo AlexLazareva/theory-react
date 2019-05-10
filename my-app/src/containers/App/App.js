@@ -3,15 +3,20 @@ import Car from './../../components/Car/Car';
 import './App.scss';
 
 class App extends Component {
-  state = {
-    cars: [
-      {name: 'Audi', year: 2016},
-      {name: 'Ford', year: 2018},
-      {name: 'Mazda', year: 2013}
-    ],
-    pageTitle: 'React components',
-    showCars: false
-  };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            cars: [
+                {name: 'Audi', year: 2016},
+                {name: 'Ford', year: 2018},
+                {name: 'Mazda', year: 2013}
+            ],
+            pageTitle: 'React components',
+            showCars: false
+        };
+    }
+
 // App handlers
     toggleCarsHandler = () => {
         this.setState({
@@ -34,7 +39,7 @@ class App extends Component {
 
         cars.splice(index, 1);
         this.setState({cars});
-    }
+    };
 
 // render App
   render() {

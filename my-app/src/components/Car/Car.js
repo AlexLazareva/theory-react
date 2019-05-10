@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Car.scss';
+
 
 class Car extends Component {
     render() {
@@ -18,5 +20,12 @@ class Car extends Component {
         );
     }
 }
+
+Car.propTypes = {
+    name: PropTypes.string.isRequired,
+    year: PropTypes.number,
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func
+};
 
 export default Car;
